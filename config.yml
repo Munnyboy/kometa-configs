@@ -1,0 +1,157 @@
+plex:
+  url: http://host.docker.internal:32400
+  token: [INSET YOUR TOKEN]
+  timeout: 60
+  db_cache: 40
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+  verify_ssl: true
+
+tmdb:
+  apikey: [INSET YOUR API KEY]
+  cache_expiration: 60
+  language: en
+
+  region:
+libraries:
+  Movies:
+
+    remove_overlays: false
+    collection_files:
+      - default: basic
+      - default: imdb
+    overlay_files:
+      - default: ratings
+        template_variables:
+          rating1: critic
+          rating1_image: imdb
+          rating2: audience
+          rating2_image: rt_popcorn
+          rating3: user
+          rating3_image: tmdb
+    operations:
+      mass_critic_rating_update: imdb
+      mass_audience_rating_update: mdb_tomatoesaudience
+      mass_user_rating_update: tmdb
+
+  TV Shows:
+    remove_overlays: false
+    collection_files:
+      - default: basic
+      - default: imdb
+    overlay_files:
+      - default: ribbon
+
+# Optional: Remove or fix these if not used
+#  Anime:
+#    collection_files:
+#      - default: basic
+#      - default: anilist
+
+#  Music:
+#    collection_files:
+#      - file: config/Music.yml
+
+playlist_files:
+- default: playlist
+  template_variables:
+    libraries: Movies, TV Shows
+
+settings:
+  run_order:
+  - operations
+  - metadata
+  - collections
+  - overlays
+  cache: true
+  cache_expiration: 60
+  asset_directory:
+  - config/assets
+  asset_folders: true
+  asset_depth: 0
+  create_asset_folders: false
+  prioritize_assets: false
+  dimensional_asset_rename: false
+  download_url_assets: false
+  show_missing_season_assets: false
+  show_missing_episode_assets: false
+  show_asset_not_needed: true
+  sync_mode: append
+  minimum_items: 1
+  default_collection_order: release
+  delete_below_minimum: true
+  delete_not_scheduled: false
+  run_again_delay: 2
+  missing_only_released: false
+  only_filter_missing: false
+  show_unmanaged: true
+  show_unconfigured: true
+  show_filtered: false
+  show_unfiltered: false
+  show_options: true
+  show_missing: true
+  show_missing_assets: true
+  save_report: false
+  tvdb_language: eng
+  item_refresh_delay: 0
+  verify_ssl: true
+  overlay_artwork_filetype: webp_lossy
+  overlay_artwork_quality: 90
+  ignore_ids:
+  ignore_imdb_ids:
+  playlist_sync_to_users:
+  playlist_exclude_users:
+  playlist_report: true
+
+  custom_repo:
+tautulli:
+  url: http://host.docker.internal:8181
+  apikey: [INSET YOUR API KEY]
+
+radarr:
+  url: http://host.docker.internal:7878
+  token: [INSET YOUR TOKEN]
+  add_missing: false
+  add_existing: false
+  upgrade_existing: false
+  monitor_existing: false
+  root_folder_path: "//[INSERT IP]/media/media/movies"
+  monitor: true
+  availability: announced
+  quality_profile: x265 Preferred - Copy
+  search: false
+
+  ignore_cache: false
+  tag:
+  radarr_path:
+  plex_path:
+sonarr:
+  url: http://host.docker.internal:8989
+  token: [INSET YOUR TOKEN]
+  add_missing: false
+  add_existing: false
+  upgrade_existing: false
+  monitor_existing: false
+  root_folder_path: "//[INSERT IP]/media/media/tv"
+  monitor: all
+  quality_profile: x265 Preferred - Copy
+  language_profile: English
+  series_type: standard
+  season_folder: true
+  search: false
+  cutoff_search: false
+
+  ignore_cache: false
+  tag:
+  sonarr_path:
+  plex_path:
+trakt:
+  client_id: [INSET YOUR CLIENT ID]
+  client_secret: [INSET YOUR CLIENT SECRET]
+  pin:
+  authorization:
+    access_token:
+    expires_in:
+    refresh_token:
+    token_type:

@@ -1,0 +1,11 @@
+default: ratings
+template_variables:
+  rating1: critic
+  rating1_image: imdb
+  rating2: audience
+  rating2_image: rt_popcorn
+  rating3: user
+  rating3_image: tmdb
+  horizontal_position: right
+  vertical_position: top
+  rating_alignment: vertical
